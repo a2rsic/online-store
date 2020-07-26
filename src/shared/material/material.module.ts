@@ -7,6 +7,9 @@ import { MatInputModule } from "@angular/material/input";
 import { MatMenuModule } from "@angular/material/menu";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatSidenavModule } from "@angular/material/sidenav";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatIconModule } from "@angular/material/icon";
 
 @NgModule({
   declarations: [],
@@ -19,6 +22,22 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
     MatMenuModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule,
+  ],
+  exports: [
+    CommonModule,
+    MatBadgeModule,
+    MatButtonModule,
+    MatCardModule,
+    MatInputModule,
+    MatMenuModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule,
   ],
 })
-export class CoreModule {}
+export class MaterialModule {}
