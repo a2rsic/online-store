@@ -8,9 +8,10 @@ import { HomeComponent } from "./pages/home/home.component";
 import { MaterialModule } from "src/app/shared/material/material.module";
 import { NavbarComponent } from "./shared/navbar/navbar.component";
 import { ProductsComponent } from './pages/products/products.component';
+import { AboutComponent } from './pages/about/about.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, NavbarComponent, ProductsComponent],
+  declarations: [AppComponent, HomeComponent, NavbarComponent, ProductsComponent, AboutComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
