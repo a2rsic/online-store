@@ -7,9 +7,10 @@ import { AppRoutingModule } from "./app-routing.module";
 import { HomeComponent } from "./pages/home/home.component";
 import { MaterialModule } from "src/app/shared/material/material.module";
 import { NavbarComponent } from "./shared/navbar/navbar.component";
+import { ProductsComponent } from './pages/products/products.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, NavbarComponent],
+  declarations: [AppComponent, HomeComponent, NavbarComponent, ProductsComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

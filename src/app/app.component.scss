@@ -1,16 +1,41 @@
-.example-container {
+mat-sidenav-container {
+  height: 100vh;
+}
+
+mat-toolbar {
+  padding: 0 2px;
+}
+
+app-navbar {
+  width: 100%;
+}
+
+.container {
   position: absolute;
-  top: 0;
-  bottom: 0;
+  top: 60px;
+  bottom: 60px;
   left: 0;
   right: 0;
-  background: #eee;
 }
 
-mat-sidenav {
-  width: 200px;
+.sidenav {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: 150px;
 }
 
-// mat-sidenav-container {
-//   height: 90%;
-// }
+button {
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.margin-top {
+  margin-top: 10px;
+}
+
+.active {
+  color: white;
+  background-color: #3f51b5;
+}
