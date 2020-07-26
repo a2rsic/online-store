@@ -1,1 +1,12 @@
-<p>App works</p>
+<div class="container">
+  <mat-sidenav-container class="example-container">
+    <mat-sidenav mode="side" opened>
+      <p>Products</p>
+      <p>About</p>
+      <p>Contacts</p>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
