@@ -33,7 +33,7 @@ const routes: Routes = [
   {
     path: "orders",
     component: OrdersComponent,
-    canActivate: [LoginGuardService],
+    // canActivate: [LoginGuardService],
   },
   {
     path: "login",
