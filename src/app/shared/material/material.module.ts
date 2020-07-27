@@ -12,6 +12,8 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatIconModule } from "@angular/material/icon";
 import { MatDividerModule } from "@angular/material/divider";
 import { MatListModule } from "@angular/material/list";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [],
@@ -29,6 +31,9 @@ import { MatListModule } from "@angular/material/list";
     MatIconModule,
     MatDividerModule,
     MatListModule,
+    MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   exports: [
     CommonModule,
@@ -44,6 +49,9 @@ import { MatListModule } from "@angular/material/list";
     MatIconModule,
     MatDividerModule,
     MatListModule,
+    MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
 })
 export class MaterialModule {}
