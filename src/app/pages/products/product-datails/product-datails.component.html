@@ -1,18 +1,18 @@
-<mat-card class="container">
+<mat-card class="container" *ngIf="product">
     <div class="product-details">
-        <h4>Laptop ProBook</h4>
+        <h4>{{product.name}}</h4>
     </div>
     <div class="product-details">
-        <p><i>Price:</i> $300</p>
-        <p><i>Code:</i> 2</p>
-        <p><i>Created at:</i> 27/7/2020</p>
+        <p><i>Price:</i> {{product.price | currency: 'RSD'}}</p>
+        <p><i>Code:</i> {{product.code}} </p>
+        <p><i>Created at:</i> {{product.createdAt | date: 'shortDate'}} </p>
     </div>
-    <div class="product-details images">
-        <img src="../../../../assets/images/no_image.jpg" alt="product-img">
-        <img src="../../../../assets/images/no_image.jpg" alt="product-img">
-        <img src="../../../../assets/images/no_image.jpg" alt="product-img">
-        <img src="../../../../assets/images/no_image.jpg" alt="product-img">
+    <div class="product-details images" *ngIf="product.imageUrls.length !== 0; else defaultImage">
+        <img *ngFor="let imgUrl of product.imageUrls" [src]="imgUrl" alt="product-img">
     </div>
+    <ng-template #defaultImage>
+        <img src="../../../../assets/images/no_image.jpg" alt="product-img">
+    </ng-template>
     <div class="action-btn">
         <button mat-raised-button color="primary">
             <mat-icon>shopping_cart</mat-icon>
@@ -20,3 +20,4 @@
         </button>
     </div>
 </mat-card>
+<mat-spinner *ngIf="isLoading" [diameter]="30" class="loading"></mat-spinner>
