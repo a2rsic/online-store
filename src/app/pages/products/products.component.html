@@ -1,14 +1,17 @@
 <div class="container" *ngIf="products">
     <mat-card class="card" *ngFor="let product of products">
         <div class="content">
-            <div class="img-container" *ngIf="product.imageUrls.length !== 0; else defaultImg">
-                <img [src]="product.imageUrls[0]" alt="Product_img">
-            </div>
-            <ng-template #defaultImg>
-                <div class="img-container">
-                    <img src="../../../assets/images/no_image.jpg" alt="Product_img">
+            <a [routerLink]="[product.id]">
+                <div class="img-container" *ngIf="product.imageUrls.length !== 0; else defaultImg">
+                    <img [src]="product.imageUrls[0]" alt="Product_img">
                 </div>
-            </ng-template>
+                <ng-template #defaultImg>
+                    <div class="img-container">
+                        <img src="../../../assets/images/no_image.jpg" alt="Product_img">
+                    </div>
+                </ng-template>
+            </a>
+
             <div>
                 <p class="product-name">{{product.name}}</p>
                 <p> Code: {{product.code}} </p>
