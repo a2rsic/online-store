@@ -4,6 +4,7 @@ import { HomeComponent } from "./pages/home/home.component";
 import { ProductsComponent } from "./pages/products/products.component";
 import { AboutComponent } from "./pages/about/about.component";
 import { ContactComponent } from "./pages/contact/contact.component";
+import { ProductDatailsComponent } from "./pages/products/product-datails/product-datails.component";
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: "contact",
     component: ContactComponent,
+  },
+  {
+    path: "product-details",
+    component: ProductDatailsComponent,
   },
   { path: "", redirectTo: "/home", pathMatch: "full" },
 ];
