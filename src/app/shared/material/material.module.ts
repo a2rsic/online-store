@@ -14,6 +14,7 @@ import { MatDividerModule } from "@angular/material/divider";
 import { MatListModule } from "@angular/material/list";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MatTableModule } from "@angular/material/table";
 
 @NgModule({
   declarations: [],
@@ -34,6 +35,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
+    MatTableModule,
   ],
   exports: [
     CommonModule,
@@ -52,6 +54,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
+    MatTableModule,
   ],
 })
 export class MaterialModule {}

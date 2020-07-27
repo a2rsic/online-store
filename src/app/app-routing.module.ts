@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
+import { RouterModule, Routes, CanActivate } from "@angular/router";
 import { HomeComponent } from "./pages/home/home.component";
 import { ProductsComponent } from "./pages/products/products.component";
 import { AboutComponent } from "./pages/about/about.component";
@@ -7,6 +7,7 @@ import { ContactComponent } from "./pages/contact/contact.component";
 import { ProductDatailsComponent } from "./pages/products/product-datails/product-datails.component";
 import { LoginComponent } from "./pages/login/login.component";
 import { OrdersComponent } from "./pages/orders/orders.component";
+import { LoginGuardService } from "./pages/login/login-guard.service";
 
 const routes: Routes = [
   {
@@ -32,6 +33,7 @@ const routes: Routes = [
   {
     path: "orders",
     component: OrdersComponent,
+    canActivate: [LoginGuardService],
   },
   {
     path: "login",

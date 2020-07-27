@@ -1,1 +1,54 @@
-<p>orders works!</p>
+<mat-card class="container">
+    <h1>Orders history</h1>
+    <table>
+        <tr>
+            <th>Order ID</th>
+            <th>Created at</th>
+            <th>Items count</th>
+            <th>Total</th>
+        </tr>
+        <tr>
+            <td>Jill</td>
+            <td>Smith</td>
+            <td>50</td>
+            <td>50</td>
+        </tr>
+        <tr>
+            <td>Eve</td>
+            <td>Jackson</td>
+            <td>94</td>
+            <td>94</td>
+        </tr>
+    </table>
+
+    <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+    </mat-paginator>
+
+    <!-- <table mat-table>
+
+        <ng-container matColumnDef="order_id">
+            <th mat-header-cell *matHeaderCellDef> Order ID </th>
+            <td mat-cell> order id </td>
+        </ng-container>
+
+        <ng-container matColumnDef="created_at">
+            <th mat-header-cell *matHeaderCellDef> Created at </th>
+            <td mat-cell> name </td>
+        </ng-container>
+
+        <ng-container matColumnDef="items_count">
+            <th mat-header-cell *matHeaderCellDef> Items count </th>
+            <td mat-cell> weight </td>
+        </ng-container>
+
+        <ng-container matColumnDef="total">
+            <th mat-header-cell *matHeaderCellDef> Total </th>
+            <td mat-cell> symbol </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table> -->
+
+
+</mat-card>
