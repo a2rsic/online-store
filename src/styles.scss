@@ -9,3 +9,14 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: #eee;
 }
+
+.loading {
+  position: fixed;
+  z-index: 999;
+  overflow: visible;
+  margin: auto;
+  top: 50%;
+  left: 0;
+  bottom: 50%;
+  right: 0;
+}

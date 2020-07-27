@@ -1,7 +1,6 @@
 .container {
   margin: 20px 15px;
   display: flex;
-  justify-content: center;
   width: 97%;
   flex-wrap: wrap;
 }
@@ -13,24 +12,56 @@
   margin-bottom: 15px;
 }
 
+.content {
+  height: 85%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .img-container {
   width: 100%;
   text-align: center;
   margin-bottom: 20px;
 
   img {
-    width: inherit;
+    width: 80%;
   }
 }
 
-mat-card-actions {
+.product-name {
+  text-align: center;
+  font-size: 17px;
+}
+
+.action-btn {
   border-top: 1px solid #eee;
+  height: 15%;
 
   button {
     width: 100%;
+    margin-top: 15px;
   }
 }
 
 mat-paginator {
   width: 91%;
+}
+
+@media only screen and (max-width: 624px) {
+  .card {
+    width: 40%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .card {
+    width: 37%;
+  }
+}
+
+@media only screen and (max-width: 624px) {
+  .card {
+    width: 70%;
+  }
 }
