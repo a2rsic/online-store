@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { LoginService } from "src/app/pages/login/login.service";
 
 @Component({
   selector: "app-navbar",
@@ -7,11 +8,18 @@ import { Router } from "@angular/router";
   styleUrls: ["./navbar.component.scss"],
 })
 export class NavbarComponent implements OnInit {
-  constructor(private router: Router) {}
+  public isLoggedIn: boolean;
+  constructor(private router: Router, private loginService: LoginService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.isLoggedIn = this.loginService.isLoggedIn();
+  }
 
   public navigateToHomePage() {
     this.router.navigateByUrl("/");
+  }
+
+  public navigateToLoginPage() {
+    this.router.navigateByUrl("/login");
   }
 }

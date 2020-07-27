@@ -5,3 +5,18 @@
 .pointer {
   cursor: pointer;
 }
+
+.user-info {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 2px solid #eee;
+
+  img {
+    width: 80px;
+  }
+
+  .info {
+    margin-left: 10px;
+  }
+}
