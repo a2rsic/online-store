@@ -14,6 +14,7 @@ import { ContactComponent } from "./pages/contact/contact.component";
 import { ProductDatailsComponent } from "./pages/products/product-datails/product-datails.component";
 import { LoginComponent } from "./pages/login/login.component";
 import { OrdersComponent } from "./pages/orders/orders.component";
+import { CartComponent } from './pages/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { OrdersComponent } from "./pages/orders/orders.component";
     ProductDatailsComponent,
     LoginComponent,
     OrdersComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,

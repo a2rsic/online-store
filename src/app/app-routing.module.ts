@@ -8,6 +8,7 @@ import { ProductDatailsComponent } from "./pages/products/product-datails/produc
 import { LoginComponent } from "./pages/login/login.component";
 import { OrdersComponent } from "./pages/orders/orders.component";
 import { LoginGuardService } from "./pages/login/login-guard.service";
+import { CartComponent } from "./pages/cart/cart.component";
 
 const routes: Routes = [
   {
@@ -34,6 +35,10 @@ const routes: Routes = [
     path: "orders",
     component: OrdersComponent,
     // canActivate: [LoginGuardService],
+  },
+  {
+    path: "shopping-cart",
+    component: CartComponent,
   },
   {
     path: "login",
