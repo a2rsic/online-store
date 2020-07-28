@@ -1,4 +1,7 @@
 import { Component, OnInit } from "@angular/core";
+import { OrdersService } from "./orders.service";
+import { LoginService } from "../login/login.service";
+import { IOrder } from "./order.interface";
 
 @Component({
   selector: "app-orders",
@@ -6,9 +9,25 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./orders.component.scss"],
 })
 export class OrdersComponent implements OnInit {
-  public displayedColumns = ["order_id", "created_at", "items_count", "total"];
+  public orders: IOrder[] = [];
+  public total: number;
 
-  constructor() {}
+  constructor(
+    private ordersService: OrdersService,
+    private loginService: LoginService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getUserOrders();
+  }
+
+  private getUserOrders() {
+    this.loginService.getUserInfo().subscribe((user) => {
+      this.ordersService.getOrdersHistory(user.id).subscribe((response) => {
+        console.log("orders", response);
+        this.orders = response.orders;
+        this.total = response.count;
+      });
+    });
+  }
 }
