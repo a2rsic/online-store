@@ -1,12 +1,39 @@
 import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { BASE_URL } from "src/app/utils/api";
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root",
 })
 export class LoginService {
-  constructor() {}
+  private url = `${BASE_URL}login`;
+
+  constructor(private http: HttpClient) {}
+
+  public login(data: { email: string; password: string }): Observable<any> {
+    return this.http.post<any>(this.url, data).pipe(
+      map((token) => {
+        localStorage.setItem("access_token", JSON.stringify(token));
+        return token;
+      })
+    );
+  }
+
+  public logout() {
+    localStorage.removeItem("access_token");
+  }
 
   public isLoggedIn(): boolean {
-    return true;
+    return !!localStorage.getItem("access_token");
+  }
+
+  public getUserInfo(): Observable<any> {
+    const token = JSON.parse(localStorage.getItem("access_token"));
+    const headers = {
+      Authorization: token.access_token,
+    };
+    return this.http.get<any>(`${BASE_URL}users/me`, { headers });
   }
 }

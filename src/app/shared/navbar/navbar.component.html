@@ -7,7 +7,7 @@
     <button mat-icon-button class="example-icon favorite-icon">
         <mat-icon matBadge="0" matBadgeColor="warn">shopping_cart</mat-icon>
     </button>
-    <ng-container *ngIf="isLoggedIn; else logged_out">
+    <ng-container *ngIf="loginService.isLoggedIn(); else loggedOut">
         <button mat-button [matMenuTriggerFor]="menu">
             <mat-icon>account_circle</mat-icon>
             <mat-icon>arrow_drop_down</mat-icon>
@@ -17,9 +17,9 @@
                 <div>
                     <img src="../../../assets/images/user.jpg" alt="user_img">
                 </div>
-                <div class="info">
-                    <p>Ime Prezime</p>
-                    <p>test@gmail.com</p>
+                <div class="info" *ngIf="user">
+                    <p>{{user.firstName}} {{user.lastName}}</p>
+                    <p>{{user.email}}</p>
                 </div>
             </div>
             <a routerLink="/orders">
@@ -28,13 +28,13 @@
                     Orders
                 </button>
             </a>
-            <button mat-menu-item>
+            <button (click)="logout()" mat-menu-item>
                 <mat-icon>power_settings_new</mat-icon>
                 Logout
             </button>
         </mat-menu>
     </ng-container>
-    <ng-template #logged_out>
+    <ng-template #loggedOut>
         <button (click)="navigateToLoginPage()" mat-icon-button>
             <mat-icon>exit_to_app</mat-icon>
         </button>

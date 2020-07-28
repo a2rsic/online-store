@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import { LoginService } from "./login.service";
 
 @Component({
   selector: "app-login",
@@ -12,9 +13,9 @@ export class LoginComponent implements OnInit {
   public email = new FormControl("", [Validators.required, Validators.email]);
   public password = new FormControl("", [
     Validators.required,
-    Validators.pattern(this.regEx),
+    // Validators.pattern(this.regEx),
   ]);
-  constructor(private router: Router) {}
+  constructor(private router: Router, private loginService: LoginService) {}
 
   ngOnInit() {}
 
@@ -43,8 +44,9 @@ export class LoginComponent implements OnInit {
     };
 
     if (this.email.valid && this.password.valid) {
-      console.log("data", data);
-      this.router.navigateByUrl("/products");
+      this.loginService
+        .login(data)
+        .subscribe((_) => this.router.navigateByUrl("/products"));
     }
   }
 }
