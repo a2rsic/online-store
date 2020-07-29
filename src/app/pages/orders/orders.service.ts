@@ -33,8 +33,7 @@ export class OrdersService {
     const headers = {
       Authorization: token.access_token,
     };
-    console.log("serviceData", body);
-    return this.http.post<any>(`${this.url}users/${userId}/orders`, body, {
+    return this.http.post<any>(`${this.url}user/${userId}/orders`, body, {
       headers,
     });
   }

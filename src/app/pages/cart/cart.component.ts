@@ -1,10 +1,9 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+
 import { CartService } from "./cart.service";
 import { LoginService } from "../login/login.service";
-import { Router, RoutesRecognized } from "@angular/router";
 import { OrdersService } from "../orders/orders.service";
-import { filter, pairwise } from "rxjs/operators";
-import { ThrowStmt } from "@angular/compiler";
 
 @Component({
   selector: "app-cart",
@@ -41,6 +40,7 @@ export class CartComponent implements OnInit {
     if (!isLoggedIn) {
       this.router.navigateByUrl("login");
     } else {
+      console.log("this.userId :>> ", this.userId);
       this.ordersService.sendOrder(this.userId, data).subscribe(
         (_) => (this.message = "Order succesfully sent"),
         (_) =>
@@ -48,6 +48,23 @@ export class CartComponent implements OnInit {
             "Your order faild. Please contact support if this continue happening.")
       );
     }
+  }
+
+  public removeProducts() {
+    this.products.length = 0;
+  }
+
+  public decrementProductQuantity(quantity: number, productId: string) {
+    const updatedProduct = this.products.find((item) => {
+      return item.product.id === productId;
+    });
+
+    if (quantity === 1) {
+      this.products = this.products.filter(
+        (item) => item.product.id !== productId
+      );
+    }
+    return updatedProduct.count--;
   }
 
   public getProductTotalAmount(quantity: number, price: number): number {

@@ -16,10 +16,9 @@
                 <th>Quantity</th>
                 <th>Total</th>
                 <th>
-                    <button mat-raised-button color="warn">Clear all</button>
+                    <button (click)="removeProducts()" mat-raised-button color="warn">Clear all</button>
                 </th>
             </tr>
-
             <tr *ngFor="let product of products">
                 <td *ngIf="product.product.imageUrls.length !== 0">
                     <img [src]="product.product.imageUrls[0]" alt="product_img">
@@ -32,7 +31,8 @@
                 <td>{{product.count}}</td>
                 <td>{{getProductTotalAmount(product.count, product.product.price)}}</td>
                 <td>
-                    <button mat-mini-fab color="warn">
+                    <button (click)="decrementProductQuantity(product.count, product.product.id)" mat-mini-fab
+                        color="warn">
                         <mat-icon>clear</mat-icon>
                     </button>
                 </td>
@@ -51,7 +51,6 @@
                     <button (click)="onSubmit()" mat-raised-button color="primary">Submit order</button>
                 </td>
             </tr>
-
         </table>
     </div>
 </mat-card>
