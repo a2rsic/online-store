@@ -17,7 +17,7 @@ export class NavbarComponent implements OnInit {
     lastName: string;
   };
 
-  public quantity: number;
+  public quantity = 0;
 
   constructor(
     private router: Router,

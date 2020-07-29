@@ -40,7 +40,6 @@ export class CartComponent implements OnInit {
     if (!isLoggedIn) {
       this.router.navigateByUrl("login");
     } else {
-      console.log("this.userId :>> ", this.userId);
       this.ordersService.sendOrder(this.userId, data).subscribe(
         (_) => (this.message = "Order succesfully sent"),
         (_) =>
