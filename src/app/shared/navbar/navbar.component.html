@@ -6,6 +6,7 @@
     <span class="example-spacer"></span>
     <button style="width: 60px;" (click)="navigateToCartPage()" mat-icon-button>
         <mat-icon [matBadge]="quantity" matBadgePosition="before" matBadgeColor="warn">shopping_cart</mat-icon>
+        <span>{{total | number}}</span>
     </button>
     <ng-container *ngIf="loginService.isLoggedIn(); else loggedOut">
         <button mat-button [matMenuTriggerFor]="menu">

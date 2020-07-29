@@ -50,16 +50,32 @@ export class ProductsComponent implements OnInit {
     this.currentPage = event.pageIndex;
   }
 
-  public addProductToCart(product) {
+  public addProductToCart(product, productId) {
     this.quantity++;
     this.shoppingCart.push(product);
+    const updatedProduct = this.getProductQuantity(productId);
     const products = [...new Set(this.shoppingCart)];
-
+    const totalAmount = this.getTotalAmount();
     const data = {
       products,
-      quantity: this.quantity,
+      quantity: products.length,
+      total: totalAmount,
     };
     this.cartService.emitData(data);
+  }
+
+  public getTotalAmount(): number {
+    const amount = this.products.map(
+      (product) => product.count * product.product.price
+    );
+    return amount.reduce((a, b) => a + b, 0);
+  }
+
+  private getProductQuantity(id) {
+    const updatedProduct = this.shoppingCart.find(
+      (item) => item.product.id === id
+    ).count++;
+    return updatedProduct;
   }
 
   private loadProducts(filters): void {

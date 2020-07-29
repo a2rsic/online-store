@@ -18,6 +18,7 @@ export class NavbarComponent implements OnInit {
   };
 
   public quantity = 0;
+  public total = 0;
 
   constructor(
     private router: Router,
@@ -30,6 +31,7 @@ export class NavbarComponent implements OnInit {
     this.cartService.cart$.subscribe((data) => {
       if (data) {
         this.quantity = data.quantity;
+        this.total = data.total;
       }
     });
   }

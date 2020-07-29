@@ -26,15 +26,31 @@ export class OrdersComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getUserOrders(this.filters);
+    this.getOrders(this.filters);
   }
 
-  private getUserOrders(filters) {
+  public handlePage(event: any) {
+    if (event.pageIndex === this.currentPage + 1) {
+      this.filters = {
+        ...this.filters,
+        skip: this.filters.skip + 8,
+      };
+      this.getOrders(this.filters);
+    } else if (event.pageIndex === this.currentPage - 1) {
+      this.filters = {
+        ...this.filters,
+        skip: this.filters.skip - 8,
+      };
+      this.getOrders(this.filters);
+    }
+    this.currentPage = event.pageIndex;
+  }
+
+  private getOrders(filters) {
     this.loginService.getUserInfo().subscribe((user) => {
       this.ordersService
         .getOrdersHistory(user.id, filters)
         .subscribe((response) => {
-          console.log("orders", response);
           this.orders = response.orders;
           this.total = response.count;
         });

@@ -12,7 +12,6 @@ import { OrdersService } from "../orders/orders.service";
 })
 export class CartComponent implements OnInit {
   public products = [];
-  public productCount = 0;
   public message = "You have no items in your cart";
 
   private userId: string;
@@ -31,6 +30,13 @@ export class CartComponent implements OnInit {
       }
     });
     this.getUserId();
+  }
+
+  public getTotalAmount(): number {
+    const amount = this.products.map(
+      (product) => product.count * product.product.price
+    );
+    return amount.reduce((a, b) => a + b, 0);
   }
 
   public onSubmit() {
