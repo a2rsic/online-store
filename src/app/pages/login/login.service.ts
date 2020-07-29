@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { BASE_URL } from "src/app/utils/api";
-import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import { Observable, of } from "rxjs";
+import { map, catchError } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root",
@@ -17,6 +17,13 @@ export class LoginService {
       map((token) => {
         localStorage.setItem("access_token", JSON.stringify(token));
         return token;
+      }),
+      catchError((err) => {
+        if (err.status === 401) {
+          this.logout();
+          return of(err);
+        }
+        throw err;
       })
     );
   }

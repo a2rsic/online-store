@@ -4,8 +4,9 @@
     </button>
     <span (click)="navigateToHomePage()" class="pointer">Home</span>
     <span class="example-spacer"></span>
-    <button (click)="navigateToCartPage()" mat-icon-button class="example-icon favorite-icon">
-        <mat-icon matBadge="0" matBadgeColor="warn">shopping_cart</mat-icon>
+    <button style="width: 60px;" (click)="navigateToCartPage()" mat-icon-button>
+        <mat-icon [matBadge]="quantity" matBadgePosition="before" matBadgeColor="warn">shopping_cart</mat-icon>
+        <!-- <span>{{totalAmount | number}} RSD</span> -->
     </button>
     <ng-container *ngIf="loginService.isLoggedIn(); else loggedOut">
         <button mat-button [matMenuTriggerFor]="menu">

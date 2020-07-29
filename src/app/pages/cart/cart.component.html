@@ -1,1 +1,57 @@
-<p>cart works!</p>
+<mat-card class="container">
+    <div class="no-items" *ngIf="products.length === 0">
+        <h4>{{message}}</h4>
+        <div class="action-btn">
+            <a routerLink="/products">
+                <button mat-raised-button color="primary">Continue shopping</button>
+            </a>
+        </div>
+    </div>
+    <div class="content" *ngIf="products.length !== 0">
+        <table>
+            <tr>
+                <th>Product</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>
+                    <button mat-raised-button color="warn">Clear all</button>
+                </th>
+            </tr>
+
+            <tr *ngFor="let product of products">
+                <td *ngIf="product.product.imageUrls.length !== 0">
+                    <img [src]="product.product.imageUrls[0]" alt="product_img">
+                </td>
+                <td *ngIf="product.product.imageUrls.length === 0">
+                    <img src="../../../assets/images/no_image.jpg" alt="product_img">
+                </td>
+                <td>{{product.product.name}}</td>
+                <td>{{product.product.price | number}} RSD</td>
+                <td>{{product.count}}</td>
+                <td>{{getProductTotalAmount(product.count, product.product.price)}}</td>
+                <td>
+                    <button mat-mini-fab color="warn">
+                        <mat-icon>clear</mat-icon>
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a routerLink="/products">
+                        <button mat-raised-button color="primary">Continue shopping</button>
+                    </a>
+                </td>
+                <td></td>
+                <td></td>
+                <td>Total:</td>
+                <td>34534535</td>
+                <td>
+                    <button (click)="onSubmit()" mat-raised-button color="primary">Submit order</button>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+</mat-card>

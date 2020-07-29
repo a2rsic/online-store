@@ -2,8 +2,8 @@
     <mat-card class="card" *ngFor="let product of products">
         <div class="content">
             <a [routerLink]="[product.id]">
-                <div class="img-container" *ngIf="product.imageUrls.length !== 0; else defaultImg">
-                    <img [src]="product.imageUrls[0]" alt="Product_img">
+                <div class="img-container" *ngIf="product.product.imageUrls.length !== 0; else defaultImg">
+                    <img [src]="product.product.imageUrls[0]" alt="Product_img">
                 </div>
                 <ng-template #defaultImg>
                     <div class="img-container">
@@ -13,13 +13,13 @@
             </a>
 
             <div>
-                <p class="product-name">{{product.name}}</p>
-                <p> Code: {{product.code}} </p>
-                <p> {{product.price | currency: 'RSD' }} </p>
+                <p class="product-name">{{product.product.name}}</p>
+                <p> Code: {{product.product.code}} </p>
+                <p> {{product.product.price | number }} RSD </p>
             </div>
         </div>
         <div class="action-btn">
-            <button mat-raised-button color="primary">
+            <button (click)="addProductToCart(product, product.product.id)" mat-raised-button color="primary">
                 <mat-icon>shopping_cart</mat-icon>
             </button>
         </div>

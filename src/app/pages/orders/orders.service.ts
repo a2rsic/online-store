@@ -7,7 +7,7 @@ import { Observable } from "rxjs";
   providedIn: "root",
 })
 export class OrdersService {
-  private url = `${BASE_URL}users`;
+  private url = `${BASE_URL}`;
 
   constructor(private http: HttpClient) {}
 
@@ -23,6 +23,19 @@ export class OrdersService {
         Authorization: token.access_token,
       },
     };
-    return this.http.get<any>(`${this.url}/${userId}/orders`, httpOptions);
+    return this.http.get<any>(`${this.url}users/${userId}/orders`, httpOptions);
+  }
+
+  public sendOrder(userId: string, data: any): Observable<any> {
+    const token = JSON.parse(localStorage.getItem("access_token"));
+    const body = JSON.stringify(data);
+
+    const headers = {
+      Authorization: token.access_token,
+    };
+    console.log("serviceData", body);
+    return this.http.post<any>(`${this.url}users/${userId}/orders`, body, {
+      headers,
+    });
   }
 }

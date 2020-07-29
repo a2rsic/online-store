@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 
 import { LoginService } from "src/app/pages/login/login.service";
+import { CartService } from "src/app/pages/cart/cart.service";
 
 @Component({
   selector: "app-navbar",
@@ -15,10 +16,22 @@ export class NavbarComponent implements OnInit {
     id: string;
     lastName: string;
   };
-  constructor(private router: Router, private loginService: LoginService) {}
+
+  public quantity: number;
+
+  constructor(
+    private router: Router,
+    private loginService: LoginService,
+    private cartService: CartService
+  ) {}
 
   ngOnInit() {
     this.loadUser();
+    this.cartService.cart$.subscribe((data) => {
+      if (data) {
+        this.quantity = data.quantity;
+      }
+    });
   }
 
   public logout() {
@@ -37,8 +50,11 @@ export class NavbarComponent implements OnInit {
   }
 
   private loadUser() {
-    this.loginService.getUserInfo().subscribe((response) => {
-      this.user = response;
-    });
+    const loggedIn = this.loginService.isLoggedIn();
+    if (loggedIn) {
+      this.loginService.getUserInfo().subscribe((response) => {
+        this.user = response;
+      });
+    }
   }
 }

@@ -1,0 +1,24 @@
+.container {
+  margin: 20px 15px;
+  text-align: center;
+  //   height: 70vh;
+}
+
+table {
+  width: 100%;
+  position: relative;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border-bottom: 2px solid #eee;
+  padding: 20px 10px;
+  text-align: start;
+}
+
+img {
+  width: 120px;
+}
+
+// sticky header
