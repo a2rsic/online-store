@@ -7,23 +7,26 @@ import { Observable } from "rxjs";
   providedIn: "root",
 })
 export class OrdersService {
-  private url = `${BASE_URL}`;
+  private url = `${BASE_URL}users`;
 
   constructor(private http: HttpClient) {}
 
-  public getOrdersHistory(userId: string): Observable<any> {
+  public getOrdersHistory(
+    userId: string,
+    filters: { skip: number; limit: number }
+  ): Observable<any> {
     const token = JSON.parse(localStorage.getItem("access_token"));
 
     const httpOptions: any = {
       params: {
-        skip: 0,
-        limit: 10,
+        skip: filters.skip,
+        limit: filters.limit,
       },
       headers: {
         Authorization: token.access_token,
       },
     };
-    return this.http.get<any>(`${this.url}users/${userId}/orders`, httpOptions);
+    return this.http.get<any>(`${this.url}/${userId}/orders`, httpOptions);
   }
 
   public sendOrder(userId: string, data: any): Observable<any> {
@@ -32,8 +35,9 @@ export class OrdersService {
 
     const headers = {
       Authorization: token.access_token,
+      "Content-Type": "application/json",
     };
-    return this.http.post<any>(`${this.url}user/${userId}/orders`, body, {
+    return this.http.post<any>(`${this.url}/${userId}/orders`, body, {
       headers,
     });
   }

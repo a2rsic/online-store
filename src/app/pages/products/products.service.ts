@@ -13,10 +13,13 @@ export class ProductsService {
 
   constructor(private http: HttpClient) {}
 
-  public getProducts(): Observable<IProductsResponse> {
+  public getProducts(filters: {
+    skip: number;
+    limit: number;
+  }): Observable<IProductsResponse> {
     const params: any = {
-      skip: 0,
-      limit: 8,
+      skip: filters.skip,
+      limit: filters.limit,
     };
 
     return this.http.get<IProductsResponse>(this.url, { params });

@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+
 import { OrdersService } from "./orders.service";
 import { LoginService } from "../login/login.service";
 import { IOrder } from "./order.interface";
@@ -10,7 +11,14 @@ import { IOrder } from "./order.interface";
 })
 export class OrdersComponent implements OnInit {
   public orders: IOrder[] = [];
-  public total: number;
+  public total = 0;
+  public pageSize = 10;
+  public currentPage = 0;
+
+  private filters = {
+    skip: 0,
+    limit: 10,
+  };
 
   constructor(
     private ordersService: OrdersService,
@@ -18,16 +26,18 @@ export class OrdersComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getUserOrders();
+    this.getUserOrders(this.filters);
   }
 
-  private getUserOrders() {
+  private getUserOrders(filters) {
     this.loginService.getUserInfo().subscribe((user) => {
-      this.ordersService.getOrdersHistory(user.id).subscribe((response) => {
-        console.log("orders", response);
-        this.orders = response.orders;
-        this.total = response.count;
-      });
+      this.ordersService
+        .getOrdersHistory(user.id, filters)
+        .subscribe((response) => {
+          console.log("orders", response);
+          this.orders = response.orders;
+          this.total = response.count;
+        });
     });
   }
 }

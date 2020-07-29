@@ -24,7 +24,9 @@
             </button>
         </div>
     </mat-card>
-    <mat-paginator [length]="total" [pageSize]="10" [pageSizeOptions]="[5, 10, 50]">
+
+    <mat-paginator (page)="pageEvent = handlePage($event)" [length]="total" [pageSize]="pageSize"
+        [pageIndex]="currentPage">
     </mat-paginator>
 </div>
 <mat-spinner class="loading" [diameter]="30" *ngIf="isLoading"></mat-spinner>

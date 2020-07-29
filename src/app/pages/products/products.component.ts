@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+
 import { ProductsService } from "./products.service";
-import { IProduct } from "./product.interface";
 import { CartService } from "../cart/cart.service";
 
 @Component({
@@ -10,11 +10,19 @@ import { CartService } from "../cart/cart.service";
 })
 export class ProductsComponent implements OnInit {
   public products = [];
-  public total: number;
   public isLoading = false;
   public quantity = 0;
   public count = 0;
   public shoppingCart = [];
+
+  public total = 0;
+  public pageSize = 8;
+  public currentPage = 0;
+
+  private initialFilters = {
+    skip: 0,
+    limit: 8,
+  };
 
   constructor(
     private productsService: ProductsService,
@@ -22,13 +30,29 @@ export class ProductsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.loadProducts();
+    this.loadProducts(this.initialFilters);
   }
 
-  public addProductToCart(product, productId: string) {
+  public handlePage(event: any) {
+    if (event.pageIndex === this.currentPage + 1) {
+      this.initialFilters = {
+        ...this.initialFilters,
+        skip: this.initialFilters.skip + 8,
+      };
+      this.loadProducts(this.initialFilters);
+    } else if (event.pageIndex === this.currentPage - 1) {
+      this.initialFilters = {
+        ...this.initialFilters,
+        skip: this.initialFilters.skip - 8,
+      };
+      this.loadProducts(this.initialFilters);
+    }
+    this.currentPage = event.pageIndex;
+  }
+
+  public addProductToCart(product) {
     this.quantity++;
     this.shoppingCart.push(product);
-    const updatedProduct = this.updateProductQuantity(productId);
     const products = [...new Set(this.shoppingCart)];
 
     const data = {
@@ -38,23 +62,16 @@ export class ProductsComponent implements OnInit {
     this.cartService.emitData(data);
   }
 
-  private updateProductQuantity(id: string) {
-    const updatedProduct = this.shoppingCart.find((item) => {
-      return item.product.id === id;
-    });
-    return updatedProduct.count++;
-  }
-
-  private loadProducts(): void {
+  private loadProducts(filters): void {
     this.isLoading = true;
-    this.productsService.getProducts().subscribe(
+
+    this.productsService.getProducts(filters).subscribe(
       (response) => {
         this.isLoading = false;
         this.products = response.products.map((product) => ({
           product,
           count: 0,
         }));
-        console.log("response", this.products);
         this.total = response.count;
       },
       (error) => alert("Something went wrong")

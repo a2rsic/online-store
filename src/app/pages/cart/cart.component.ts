@@ -41,7 +41,9 @@ export class CartComponent implements OnInit {
       this.router.navigateByUrl("login");
     } else {
       this.ordersService.sendOrder(this.userId, data).subscribe(
-        (_) => (this.message = "Order succesfully sent"),
+        (_) => {
+          this.message = "Order succesfully sent";
+        },
         (_) =>
           (this.message =
             "Your order faild. Please contact support if this continue happening.")
