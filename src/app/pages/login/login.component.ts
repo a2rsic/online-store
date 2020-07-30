@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+
 import { LoginService } from "./login.service";
 
 @Component({
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   public email = new FormControl("", [Validators.required, Validators.email]);
   public password = new FormControl("", [
     Validators.required,
-    // Validators.pattern(this.regEx),
+    Validators.pattern(this.regEx),
   ]);
   constructor(private router: Router, private loginService: LoginService) {}
 

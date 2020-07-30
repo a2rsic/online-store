@@ -15,7 +15,7 @@ export class OrdersComponent implements OnInit {
   public pageSize = 10;
   public currentPage = 0;
 
-  private filters = {
+  private queryParams = {
     skip: 0,
     limit: 10,
   };
@@ -26,22 +26,22 @@ export class OrdersComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getOrders(this.filters);
+    this.getOrders(this.queryParams);
   }
 
   public handlePage(event: any) {
     if (event.pageIndex === this.currentPage + 1) {
-      this.filters = {
-        ...this.filters,
-        skip: this.filters.skip + 10,
+      this.queryParams = {
+        ...this.queryParams,
+        skip: this.queryParams.skip + 10,
       };
-      this.getOrders(this.filters);
+      this.getOrders(this.queryParams);
     } else if (event.pageIndex === this.currentPage - 1) {
-      this.filters = {
-        ...this.filters,
-        skip: this.filters.skip - 10,
+      this.queryParams = {
+        ...this.queryParams,
+        skip: this.queryParams.skip - 10,
       };
-      this.getOrders(this.filters);
+      this.getOrders(this.queryParams);
     }
     this.currentPage = event.pageIndex;
   }

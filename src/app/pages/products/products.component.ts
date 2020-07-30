@@ -18,7 +18,7 @@ export class ProductsComponent implements OnInit {
   public pageSize = 8;
   public currentPage = 0;
 
-  private initialFilters = {
+  private queryParams = {
     skip: 0,
     limit: 8,
   };
@@ -29,22 +29,22 @@ export class ProductsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.loadProducts(this.initialFilters);
+    this.loadProducts(this.queryParams);
   }
 
   public handlePage(event: any) {
     if (event.pageIndex === this.currentPage + 1) {
-      this.initialFilters = {
-        ...this.initialFilters,
-        skip: this.initialFilters.skip + 8,
+      this.queryParams = {
+        ...this.queryParams,
+        skip: this.queryParams.skip + 8,
       };
-      this.loadProducts(this.initialFilters);
+      this.loadProducts(this.queryParams);
     } else if (event.pageIndex === this.currentPage - 1) {
-      this.initialFilters = {
-        ...this.initialFilters,
-        skip: this.initialFilters.skip - 8,
+      this.queryParams = {
+        ...this.queryParams,
+        skip: this.queryParams.skip - 8,
       };
-      this.loadProducts(this.initialFilters);
+      this.loadProducts(this.queryParams);
     }
     this.currentPage = event.pageIndex;
   }
