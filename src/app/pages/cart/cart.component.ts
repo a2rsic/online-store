@@ -48,9 +48,10 @@ export class CartComponent implements OnInit {
     } else {
       this.ordersService.sendOrder(this.userId, data).subscribe(
         (_) => {
+          this.products.length = 0;
           this.message = "Order succesfully sent";
         },
-        (_) =>
+        (error) =>
           (this.message =
             "Your order faild. Please contact support if this continue happening.")
       );

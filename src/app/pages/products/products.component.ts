@@ -11,7 +11,6 @@ import { CartService } from "../cart/cart.service";
 export class ProductsComponent implements OnInit {
   public products = [];
   public isLoading = false;
-  public quantity = 0;
   public count = 0;
   public shoppingCart = [];
 
@@ -51,7 +50,6 @@ export class ProductsComponent implements OnInit {
   }
 
   public addProductToCart(product, productId) {
-    this.quantity++;
     this.shoppingCart.push(product);
     const updatedProduct = this.getProductQuantity(productId);
     const products = [...new Set(this.shoppingCart)];

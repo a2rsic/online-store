@@ -1,7 +1,7 @@
 <div class="container" *ngIf="products">
     <mat-card class="card" *ngFor="let product of products">
         <div class="content">
-            <a [routerLink]="[product.id]">
+            <a [routerLink]="[product.product.id]">
                 <div class="img-container" *ngIf="product.product.imageUrls.length !== 0; else defaultImg">
                     <img [src]="product.product.imageUrls[0]" alt="Product_img">
                 </div>

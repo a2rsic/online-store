@@ -33,13 +33,13 @@ export class OrdersComponent implements OnInit {
     if (event.pageIndex === this.currentPage + 1) {
       this.filters = {
         ...this.filters,
-        skip: this.filters.skip + 8,
+        skip: this.filters.skip + 10,
       };
       this.getOrders(this.filters);
     } else if (event.pageIndex === this.currentPage - 1) {
       this.filters = {
         ...this.filters,
-        skip: this.filters.skip - 8,
+        skip: this.filters.skip - 10,
       };
       this.getOrders(this.filters);
     }

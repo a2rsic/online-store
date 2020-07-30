@@ -18,7 +18,7 @@ export class NavbarComponent implements OnInit {
   };
 
   public quantity = 0;
-  public total = 0;
+  public total: number;
 
   constructor(
     private router: Router,
